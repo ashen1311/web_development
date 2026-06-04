@@ -54,7 +54,7 @@ rel="noopener noreferrer" on all external links
 # Check what files have changed
 git status
 
-# View a log of your commits
+# View a log of commits
 git log --oneline
 
 # Create a feature branch (good practice)
