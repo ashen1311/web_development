@@ -1,31 +1,36 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- Primary SEO -->
   <title>Ashen Paul — Web Developer</title>
-  <meta name="description" content="Hi, I'm Ashen Paul — a web developer based in India who builds clean, accessible websites from scratch. Currently growing through an internship." />
-  <meta name="author"  content="Ashen Paul" />
+  <meta name="description" content="Hi, I'm Ashen Paul, a web developer from India who builds clean, accessible websites. Check out my projects and get in touch." />
+  <meta name="author" content="Ashen Paul" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://ashenpaul.dev/" />
 
+  <!-- Open Graph -->
   <meta property="og:type"        content="website" />
   <meta property="og:url"         content="https://ashenpaul.dev/" />
   <meta property="og:title"       content="Ashen Paul — Web Developer" />
-  <meta property="og:description" content="Clean, accessible websites built with care. Take a look at my work." />
+  <meta property="og:description" content="Clean, accessible websites built from scratch. Based in India." />
   <meta property="og:image"       content="https://ashenpaul.dev/assets/og.png" />
 
+  <!-- Twitter Card -->
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:title"       content="Ashen Paul — Web Developer" />
-  <meta name="twitter:description" content="Clean, accessible websites built with care." />
+  <meta name="twitter:description" content="Clean, accessible websites built from scratch. Based in India." />
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/style.css" />
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
+  <link rel="stylesheet" href="assets/style.css" />
+
+  <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -33,7 +38,7 @@
     "name": "Ashen Paul",
     "url": "https://ashenpaul.dev",
     "jobTitle": "Web Developer",
-    "description": "Web developer focused on semantic HTML5 and accessible interfaces.",
+    "address": { "@type": "PostalAddress", "addressCountry": "IN" },
     "sameAs": [
       "https://github.com/ashenpaul",
       "https://linkedin.com/in/ashenpaul"
@@ -43,16 +48,18 @@
 </head>
 <body>
 
+  <!-- Skip navigation — WCAG 2.4.1 -->
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
-  <!-- ===== HEADER — Flexbox: logo | nav | theme toggle ===== -->
+  <!-- ============ HEADER ============ -->
   <header class="site-header" role="banner">
     <div class="container header-inner">
 
-      <a href="index.html" class="logo" aria-label="Ashen Paul — homepage">
+      <a href="index.html" class="logo" aria-label="Ashen Paul — go to homepage">
         Ashen<span class="logo-dot">.</span>
       </a>
 
+      <!-- Mobile menu button -->
       <button
         class="nav-toggle"
         aria-controls="main-nav"
@@ -73,157 +80,60 @@
         </ul>
       </nav>
 
-      <!-- Dark / light mode toggle -->
-      <div class="header-right">
-        <button
-          class="theme-toggle"
-          aria-label="Switch to light mode"
-          id="theme-btn"
-        >
-          <!-- Moon icon — shown in dark mode -->
-          <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-               aria-hidden="true">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-          </svg>
-          <!-- Sun icon — shown in light mode -->
-          <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-               aria-hidden="true">
-            <circle cx="12" cy="12" r="5"/>
-            <line x1="12" y1="1"  x2="12" y2="3"/>
-            <line x1="12" y1="21" x2="12" y2="23"/>
-            <line x1="4.22" y1="4.22"  x2="5.64" y2="5.64"/>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-            <line x1="1"  y1="12" x2="3"  y2="12"/>
-            <line x1="21" y1="12" x2="23" y2="12"/>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-            <line x1="18.36" y1="5.64"  x2="19.78" y2="4.22"/>
-          </svg>
-        </button>
-      </div>
-
     </div>
   </header>
 
-  <!-- ===== MAIN ===== -->
+  <!-- ============ MAIN ============ -->
   <main id="main-content" tabindex="-1">
 
-    <!-- HERO — CSS Grid 2-column -->
-    <section class="hero" aria-labelledby="hero-h1">
-      <div class="container hero-inner">
-
-        <!-- Left column: text -->
-        <div class="hero-text">
-          <span class="hero-tag" aria-hidden="true">// hello, world</span>
-          <h1 id="hero-h1">
-            I'm Ashen Paul.<br>
-            <span>I build things</span> for the web.
-          </h1>
-          <p class="hero-intro">
-            Web developer based in Sri Lanka. I write clean HTML, style things
-            carefully, and try to leave every project a little more accessible
-            than I found it. Currently doing an internship and genuinely enjoying it.
-          </p>
-          <div class="hero-actions">
-            <a href="projects.html" class="btn btn-solid">See My Work</a>
-            <a href="about.html"    class="btn">About me →</a>
-          </div>
-        </div>
-
-        <!-- Right column: stat tiles (CSS Grid inside) -->
-        <div class="hero-visual" aria-hidden="true">
-          <div class="hero-stat">
-            <span class="hero-stat-num">4+</span>
-            <span class="hero-stat-label">Projects shipped</span>
-          </div>
-          <div class="hero-stat">
-            <span class="hero-stat-num">100</span>
-            <span class="hero-stat-label">Lighthouse score</span>
-          </div>
-          <div class="hero-stat">
-            <span class="hero-stat-num">WCAG</span>
-            <span class="hero-stat-label">AA compliant</span>
-          </div>
-          <div class="hero-stat">
-            <span class="hero-stat-num">0</span>
-            <span class="hero-stat-label">Frameworks used</span>
-          </div>
-          <div class="hero-badges">
-            <span class="hero-badge-pill">HTML5</span>
-            <span class="hero-badge-pill">CSS Grid</span>
-            <span class="hero-badge-pill">Flexbox</span>
-            <span class="hero-badge-pill">JavaScript</span>
-            <span class="hero-badge-pill">ARIA</span>
-            <span class="hero-badge-pill">Git</span>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- STATS BAR — Flexbox -->
-    <div class="stats-bar" aria-label="Quick stats" role="region">
-      <div class="container stats-inner">
-        <div class="stat-item">
-          <span class="stat-num">3</span>
-          <span class="stat-label">Months interning</span>
-        </div>
-        <div class="stat-divider" aria-hidden="true"></div>
-        <div class="stat-item">
-          <span class="stat-num">4</span>
-          <span class="stat-label">Projects live</span>
-        </div>
-        <div class="stat-divider" aria-hidden="true"></div>
-        <div class="stat-item">
-          <span class="stat-num">1523</span>
-          <span class="stat-label">Lines of CSS</span>
-        </div>
-        <div class="stat-divider" aria-hidden="true"></div>
-        <div class="stat-item">
-          <span class="stat-num">0</span>
-          <span class="stat-label">Accessibility shortcuts</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- ABOUT STRIP — CSS Grid 2-column -->
-    <section class="about-strip" aria-labelledby="about-strip-h">
-      <div class="container about-strip-inner">
-        <div class="reveal">
-          <span class="section-label" aria-hidden="true">// who am I</span>
-          <h2 id="about-strip-h">A developer who actually reads the docs.</h2>
-        </div>
-        <div class="reveal">
-          <p>
-            I got into web development because I liked making things you can
-            <em>see</em>. What kept me here is accessibility — the moment I realised
-            that a missing <code>aria-label</code> could lock someone out of an entire
-            page, I started taking the fundamentals a lot more seriously.
-          </p>
-          <p style="margin-top:1rem;">
-            When I'm not writing code I'm usually reading about it. Or hiking, when
-            the weather agrees.
-          </p>
-          <a href="about.html" class="btn btn-ghost btn-sm" style="margin-top:1.25rem;">Full story →</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- SKILLS — CSS Grid auto-fill -->
-    <section class="skills-section" aria-labelledby="skills-h">
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-heading">
       <div class="container">
-        <div class="section-top reveal">
-          <div>
-            <span class="section-label" aria-hidden="true">// what I work with</span>
-            <h2 id="skills-h">Skills &amp; Technologies</h2>
-          </div>
+        <p class="hero-tag" aria-hidden="true">// hello, world</p>
+        <h1 id="hero-heading">
+          I'm Ashen Paul.<br />
+          <span>I build things</span> for the web.
+        </h1>
+        <p class="hero-intro">
+          Web developer based in India. I write clean HTML, style things carefully,
+          and try to leave every project more accessible than I found it.
+          Currently growing through an internship and genuinely enjoying the work.
+        </p>
+        <div class="hero-actions">
+          <a href="projects.html" class="btn btn-solid">See My Projects</a>
+          <a href="about.html" class="btn btn-outline">About me →</a>
         </div>
+      </div>
+    </section>
 
-        <div class="skills-grid reveal-stagger" role="list" aria-label="Skill categories">
+    <!-- ABOUT STRIP -->
+    <section class="about-strip" aria-labelledby="about-strip-heading">
+      <div class="container about-strip-inner">
+        <div>
+          <span class="section-label" aria-hidden="true">// who am I</span>
+          <h2 id="about-strip-heading">A developer who actually reads the docs.</h2>
+        </div>
+        <div>
+          <p>
+            I got into web development because I liked making things you can <em>see</em>.
+            What kept me here is accessibility — the moment I realised a missing label
+            could lock someone out of a whole page, I started taking the fundamentals
+            a lot more seriously.
+          </p>
+          <a href="about.html" class="btn btn-ghost" style="margin-top:1rem;display:inline-flex;">Full story →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="skills-section" aria-labelledby="skills-heading">
+      <div class="container">
+        <span class="section-label" aria-hidden="true">// what I work with</span>
+        <h2 id="skills-heading">Skills &amp; Technologies</h2>
+
+        <div class="skills-grid" role="list" aria-label="Skill categories">
 
           <article class="skill-card" role="listitem" aria-labelledby="sk-html">
-            <span class="skill-card-icon" aria-hidden="true">⟨/⟩</span>
             <h3 id="sk-html">HTML &amp; Semantics</h3>
             <ul role="list" aria-label="HTML skills">
               <li>HTML5 semantic elements</li>
@@ -235,36 +145,33 @@
           </article>
 
           <article class="skill-card" role="listitem" aria-labelledby="sk-css">
-            <span class="skill-card-icon" aria-hidden="true">#</span>
             <h3 id="sk-css">CSS &amp; Layout</h3>
             <ul role="list" aria-label="CSS skills">
-              <li>CSS Grid — 2D layouts</li>
-              <li>Flexbox — component alignment</li>
+              <li>CSS Grid &amp; Flexbox</li>
               <li>Custom properties</li>
-              <li>Mobile-first responsive</li>
-              <li>Light / dark mode theming</li>
+              <li>Responsive design</li>
+              <li>Animations</li>
+              <li>prefers-reduced-motion</li>
             </ul>
           </article>
 
           <article class="skill-card" role="listitem" aria-labelledby="sk-js">
-            <span class="skill-card-icon" aria-hidden="true">JS</span>
             <h3 id="sk-js">JavaScript</h3>
             <ul role="list" aria-label="JavaScript skills">
               <li>Vanilla ES2022+</li>
-              <li>DOM &amp; event handling</li>
+              <li>DOM manipulation</li>
               <li>Form validation</li>
-              <li>Keyboard patterns</li>
+              <li>Keyboard interaction</li>
               <li>ARIA live regions</li>
             </ul>
           </article>
 
           <article class="skill-card" role="listitem" aria-labelledby="sk-tools">
-            <span class="skill-card-icon" aria-hidden="true">⚙</span>
             <h3 id="sk-tools">Tools &amp; Workflow</h3>
             <ul role="list" aria-label="Tool skills">
               <li>Git &amp; GitHub</li>
               <li>VS Code</li>
-              <li>Lighthouse CI</li>
+              <li>Lighthouse audits</li>
               <li>axe DevTools</li>
               <li>GitHub Pages</li>
             </ul>
@@ -274,29 +181,29 @@
       </div>
     </section>
 
-    <!-- FEATURED PROJECTS — CSS Grid 3-col -->
-    <section class="featured-section" aria-labelledby="feat-h">
+    <!-- FEATURED PROJECTS -->
+    <section class="featured-section" aria-labelledby="featured-heading">
       <div class="container">
-        <div class="section-top reveal">
+        <div class="section-top">
           <div>
             <span class="section-label" aria-hidden="true">// things I've built</span>
-            <h2 id="feat-h">Featured Projects</h2>
+            <h2 id="featured-heading">Featured Projects</h2>
           </div>
-          <a href="projects.html" class="btn btn-ghost btn-sm" aria-label="Browse all projects">All projects →</a>
+          <a href="projects.html" class="btn btn-ghost" aria-label="Browse all projects">All projects →</a>
         </div>
 
-        <ul class="project-grid reveal-stagger" role="list" aria-label="Featured projects">
+        <ul class="project-grid" role="list" aria-label="Featured projects">
 
           <li>
             <article class="proj-card" aria-labelledby="fp1-title">
               <div class="proj-thumb" style="background:linear-gradient(135deg,#1c2a1e,#2a3a2c);" aria-hidden="true">🌿</div>
               <div class="proj-body">
                 <h3 id="fp1-title">Campus Ride Share</h3>
-                <p>A carpooling app for uni students. Full keyboard nav, semantic forms, ARIA live regions.</p>
-                <ul class="tag-list" role="list" aria-label="Technologies">
+                <p>A carpooling app for university students. Full keyboard nav, semantic forms, ARIA live regions.</p>
+                <ul class="tag-list" role="list" aria-label="Technologies used">
                   <li>HTML5</li><li>CSS3</li><li>JavaScript</li>
                 </ul>
-                <a href="projects.html#campus-ride" class="btn btn-sm" aria-label="View Campus Ride Share project">View Project</a>
+                <a href="projects.html#campus-ride" class="btn btn-sm" aria-label="View Campus Ride Share project details">View Project</a>
               </div>
             </article>
           </li>
@@ -306,11 +213,11 @@
               <div class="proj-thumb" style="background:linear-gradient(135deg,#1c1e2a,#2c2a3a);" aria-hidden="true">📋</div>
               <div class="proj-body">
                 <h3 id="fp2-title">Task Board</h3>
-                <p>Drag-and-drop Kanban manager that works entirely with a keyboard too.</p>
-                <ul class="tag-list" role="list" aria-label="Technologies">
+                <p>Kanban task manager. Drag and drop that works entirely with a keyboard too.</p>
+                <ul class="tag-list" role="list" aria-label="Technologies used">
                   <li>JavaScript</li><li>CSS Grid</li><li>ARIA</li>
                 </ul>
-                <a href="projects.html#task-board" class="btn btn-sm" aria-label="View Task Board project">View Project</a>
+                <a href="projects.html#task-board" class="btn btn-sm" aria-label="View Task Board project details">View Project</a>
               </div>
             </article>
           </li>
@@ -320,11 +227,11 @@
               <div class="proj-thumb" style="background:linear-gradient(135deg,#2a1c1c,#3a2a2a);" aria-hidden="true">📰</div>
               <div class="proj-body">
                 <h3 id="fp3-title">Dev Notes Blog</h3>
-                <p>A static blog with proper article semantics, heading hierarchy, and an RSS feed.</p>
-                <ul class="tag-list" role="list" aria-label="Technologies">
+                <p>Static blog with proper article semantics, heading hierarchy, and an RSS feed.</p>
+                <ul class="tag-list" role="list" aria-label="Technologies used">
                   <li>HTML5</li><li>CSS3</li><li>RSS</li>
                 </ul>
-                <a href="projects.html#dev-notes" class="btn btn-sm" aria-label="View Dev Notes Blog project">View Project</a>
+                <a href="projects.html#dev-notes" class="btn btn-sm" aria-label="View Dev Notes Blog project details">View Project</a>
               </div>
             </article>
           </li>
@@ -333,34 +240,29 @@
       </div>
     </section>
 
-    <!-- CTA BAND -->
-    <section class="cta-section" aria-labelledby="cta-h">
-      <div class="container reveal">
+    <!-- CTA -->
+    <section class="cta-section" aria-labelledby="cta-heading">
+      <div class="container">
         <span class="section-label" aria-hidden="true">// let's talk</span>
-        <h2 id="cta-h">Got a project or just want to say hi?</h2>
+        <h2 id="cta-heading">Got a project or just want to say hi?</h2>
         <p>I'm always happy to hear from people. Project idea, feedback, or just a question — my inbox is open.</p>
-        <div class="cta-actions">
-          <a href="contact.html" class="btn btn-solid btn-lg">Send me a message</a>
-          <a href="projects.html" class="btn btn-ghost btn-lg">Browse my work</a>
-        </div>
+        <a href="contact.html" class="btn btn-solid">Send me a message</a>
       </div>
     </section>
 
   </main>
 
-  <!-- ===== FOOTER — Flexbox ===== -->
+  <!-- ============ FOOTER ============ -->
   <footer class="site-footer" role="contentinfo">
     <div class="container footer-inner">
       <p class="footer-copy">
-        © <time datetime="2025">2025</time> Ashen Paul
-        <span aria-hidden="true"> · </span>
-        built by hand, line by line.
+        &copy; <time datetime="2025">2025</time> Ashen Paul &mdash; built by hand, with care.
       </p>
-      <nav class="foot-nav" aria-label="Footer links">
-        <ul role="list">
-          <li><a href="https://github.com/ashenpaul"      target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in new tab)">GitHub</a></li>
-          <li><a href="https://linkedin.com/in/ashenpaul" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)">LinkedIn</a></li>
-          <li><a href="mailto:hello@ashenpaul.dev" aria-label="Email Ashen">Email</a></li>
+      <nav aria-label="Social and footer links">
+        <ul role="list" class="foot-nav-list">
+          <li><a href="https://github.com/ashenpaul"      target="_blank" rel="noopener noreferrer" aria-label="GitHub profile (opens in new tab)">GitHub</a></li>
+          <li><a href="https://linkedin.com/in/ashenpaul" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile (opens in new tab)">LinkedIn</a></li>
+          <li><a href="mailto:hello@ashenpaul.dev" aria-label="Send email to Ashen Paul">Email</a></li>
         </ul>
       </nav>
     </div>
