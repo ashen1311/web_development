@@ -1,45 +1,48 @@
 'use strict';
+/* ================================================================
+   ASHEN PAUL — main.js  (Task 1)
+   1. Mobile nav toggle (aria-expanded, Escape key, outside click)
+   2. Project category filter (aria-pressed, aria-live status)
+   3. Contact form validation (aria-invalid, aria-live errors)
+   ================================================================ */
 
-/* ======================================================
-   ASHEN PAUL — main.js
-   Handles: mobile nav, project filter, contact form
-   ====================================================== */
 
-/* ── MOBILE NAV ──────────────────────────────────────── */
-const toggle = document.querySelector('.nav-toggle');
-const nav    = document.querySelector('.primary-nav');
+/* ── 1. MOBILE NAV ───────────────────────────────────────────── */
+const navToggle  = document.querySelector('.nav-toggle');
+const primaryNav = document.querySelector('.primary-nav');
 
-if (toggle && nav) {
+if (navToggle && primaryNav) {
 
-  toggle.addEventListener('click', () => {
-    const open = toggle.getAttribute('aria-expanded') === 'true';
-    toggle.setAttribute('aria-expanded', String(!open));
-    toggle.setAttribute('aria-label', open ? 'Open menu' : 'Close menu');
-    nav.classList.toggle('open', !open);
+  navToggle.addEventListener('click', () => {
+    const open = navToggle.getAttribute('aria-expanded') === 'true';
+    navToggle.setAttribute('aria-expanded', String(!open));
+    navToggle.setAttribute('aria-label', open ? 'Open navigation menu' : 'Close navigation menu');
+    primaryNav.classList.toggle('open', !open);
   });
 
-  // close on outside click
+  /* Close on outside click */
   document.addEventListener('click', e => {
-    if (!toggle.contains(e.target) && !nav.contains(e.target)) {
-      toggle.setAttribute('aria-expanded', 'false');
-      toggle.setAttribute('aria-label', 'Open menu');
-      nav.classList.remove('open');
+    if (!navToggle.contains(e.target) && !primaryNav.contains(e.target)) {
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Open navigation menu');
+      primaryNav.classList.remove('open');
     }
   });
 
-  // close on Escape
+  /* Close on Escape and return focus to toggle */
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && nav.classList.contains('open')) {
-      toggle.setAttribute('aria-expanded', 'false');
-      nav.classList.remove('open');
-      toggle.focus();
+    if (e.key === 'Escape' && primaryNav.classList.contains('open')) {
+      navToggle.setAttribute('aria-expanded', 'false');
+      primaryNav.classList.remove('open');
+      navToggle.focus();
     }
   });
 }
 
-/* ── PROJECT FILTER ──────────────────────────────────── */
-const filterBtns  = document.querySelectorAll('.filter-btn');
-const projItems   = document.querySelectorAll('#proj-list li');
+
+/* ── 2. PROJECT FILTER ───────────────────────────────────────── */
+const filterBtns   = document.querySelectorAll('.filter-btn');
+const projItems    = document.querySelectorAll('#proj-list li');
 const filterStatus = document.getElementById('filter-status');
 
 if (filterBtns.length && projItems.length) {
@@ -47,27 +50,23 @@ if (filterBtns.length && projItems.length) {
     btn.addEventListener('click', () => {
       const filter = btn.dataset.filter;
 
-      // update button states
-      filterBtns.forEach(b => {
-        b.setAttribute('aria-pressed', 'false');
-        b.classList.remove('active');
-      });
+      /* Update aria-pressed on all buttons */
+      filterBtns.forEach(b => b.setAttribute('aria-pressed', 'false'));
       btn.setAttribute('aria-pressed', 'true');
-      btn.classList.add('active');
 
-      // show / hide items
+      /* Show / hide items */
       let count = 0;
       projItems.forEach(item => {
-        const cats = item.dataset.category || '';
-        const show = filter === 'all' || cats.split(' ').includes(filter);
+        const cats = (item.dataset.category || '').split(' ');
+        const show = filter === 'all' || cats.includes(filter);
         item.hidden = !show;
         if (show) count++;
       });
 
-      // screen-reader announcement
+      /* Announce result to screen readers via aria-live region */
       if (filterStatus) {
         filterStatus.textContent =
-          `Showing ${count} project${count !== 1 ? 's' : ''} — filter: ${
+          `Showing ${count} project${count !== 1 ? 's' : ''} — ${
             filter === 'all' ? 'all categories' : filter
           }.`;
       }
@@ -75,7 +74,8 @@ if (filterBtns.length && projItems.length) {
   });
 }
 
-/* ── CONTACT FORM ────────────────────────────────────── */
+
+/* ── 3. CONTACT FORM ─────────────────────────────────────────── */
 const form = document.getElementById('contact-form');
 
 if (form) {
@@ -86,17 +86,17 @@ if (form) {
   const charCount = document.getElementById('char-count');
   const formMsg   = document.getElementById('form-msg');
   const submitBtn = form.querySelector('[type="submit"]');
-  const spinner   = submitBtn ? submitBtn.querySelector('.btn-spinner') : null;
+  const spinner   = submitBtn && submitBtn.querySelector('.btn-spinner');
 
   /* Live character count */
   if (messageEl && charCount) {
     messageEl.addEventListener('input', () => {
       const n = messageEl.value.length;
-      charCount.textContent = n ? `${n} character${n !== 1 ? 's' : ''} so far.` : '';
+      charCount.textContent = n > 0 ? `${n} character${n !== 1 ? 's' : ''} so far.` : '';
     });
   }
 
-  /* Helpers */
+  /* Show inline error */
   function showErr(input, errId, msg) {
     const el = document.getElementById(errId);
     if (!el) return;
@@ -105,6 +105,7 @@ if (form) {
     input.setAttribute('aria-invalid', 'true');
   }
 
+  /* Clear inline error */
   function clearErr(input, errId) {
     const el = document.getElementById(errId);
     if (!el) return;
@@ -113,7 +114,7 @@ if (form) {
     input.removeAttribute('aria-invalid');
   }
 
-  /* Validators */
+  /* Individual validators */
   function checkName() {
     if (!nameEl.value.trim()) {
       showErr(nameEl, 'name-err', 'Please enter your name.'); return false;
@@ -127,7 +128,7 @@ if (form) {
       showErr(emailEl, 'email-err', 'Please enter your email address.'); return false;
     }
     if (!re.test(emailEl.value.trim())) {
-      showErr(emailEl, 'email-err', 'That doesn\'t look like a valid email.'); return false;
+      showErr(emailEl, 'email-err', "That doesn't look like a valid email address."); return false;
     }
     clearErr(emailEl, 'email-err'); return true;
   }
@@ -144,42 +145,50 @@ if (form) {
 
   function checkConsent() {
     if (!consentEl.checked) {
-      showErr(consentEl, 'consent-err', 'Please check the box to continue.'); return false;
+      showErr(consentEl, 'consent-err', 'Please tick the box to continue.'); return false;
     }
     clearErr(consentEl, 'consent-err'); return true;
   }
 
-  /* Blur validation */
-  nameEl.addEventListener('blur',    checkName);
-  emailEl.addEventListener('blur',   checkEmail);
+  /* Validate on blur — gives inline feedback immediately */
+  nameEl.addEventListener('blur', checkName);
+  emailEl.addEventListener('blur', checkEmail);
   messageEl.addEventListener('blur', checkMessage);
   consentEl.addEventListener('change', checkConsent);
 
-  /* Submit */
+  /* Submit handler */
   form.addEventListener('submit', async e => {
     e.preventDefault();
 
-    const valid = [checkName(), checkEmail(), checkMessage(), checkConsent()].every(Boolean);
+    /* Run all validators — get array of booleans */
+    const valid = [
+      checkName(),
+      checkEmail(),
+      checkMessage(),
+      checkConsent()
+    ].every(Boolean);
 
     if (!valid) {
-      // move focus to first invalid field
+      /* Move focus to first invalid field */
       const bad = form.querySelector('[aria-invalid="true"]');
       if (bad) bad.focus();
-      showFeedback('error', 'There are a few things to fix before sending — see the fields above.');
+      showFeedback('error', 'A few things need fixing above before sending.');
       return;
     }
 
-    // Loading state
+    /* Show loading state */
     if (submitBtn) { submitBtn.disabled = true; submitBtn.setAttribute('aria-busy', 'true'); }
     if (spinner)   { spinner.hidden = false; }
 
-    // Simulate network request (replace with real fetch in production)
+    /* Simulate network request — swap with real fetch() in production */
     await new Promise(r => setTimeout(r, 1400));
 
+    /* Reset loading state */
     if (submitBtn) { submitBtn.disabled = false; submitBtn.removeAttribute('aria-busy'); }
     if (spinner)   { spinner.hidden = true; }
 
-    showFeedback('success', '✓ Message sent! I\'ll get back to you soon.');
+    /* Success */
+    showFeedback('success', "Message sent! I'll get back to you soon.");
     form.reset();
     if (charCount) charCount.textContent = '';
   });
